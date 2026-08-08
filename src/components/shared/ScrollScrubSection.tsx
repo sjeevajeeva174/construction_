@@ -3,6 +3,7 @@
 import { useRef, type ReactNode } from "react";
 import gsap from "gsap";
 import { useScrollVideoScrub } from "@/hooks/useScrollVideoScrub";
+import { VIDEO_SCRUB_PPS } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
 type ScrollScrubSectionProps = {
@@ -15,7 +16,7 @@ type ScrollScrubSectionProps = {
   mediaClassName?: string;
   contentClassName?: string;
   overlayClassName?: string;
-  /** Px of scroll per second of video. Pin length = duration × this. */
+  /** Px of scroll per second of video (~1200–1500). Pin length = duration × this. */
   pixelsPerSecond?: number;
   /** Load immediately (hero). Others lazy-load near viewport. */
   eager?: boolean;
@@ -36,7 +37,7 @@ type ScrollScrubSectionProps = {
 
 /**
  * Pinned scroll-scrub cinematic accent.
- * Visual chrome is GSAP-driven (composited). Video time is RAF-lerped in the hook.
+ * Visual chrome is GSAP-driven (composited). Video time maps 1:1 from ScrollTrigger progress.
  */
 export function ScrollScrubSection({
   id,
@@ -48,7 +49,7 @@ export function ScrollScrubSection({
   mediaClassName,
   contentClassName,
   overlayClassName,
-  pixelsPerSecond = 280,
+  pixelsPerSecond = VIDEO_SCRUB_PPS,
   eager = false,
   pin = true,
   fadeOut = true,

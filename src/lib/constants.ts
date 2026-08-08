@@ -26,7 +26,7 @@ export const NAV_LINKS = [
 
 /**
  * Exactly three optimized 4-second cinematic accents.
- * Scroll pin distance = duration × pixelsPerSecond (no trim windows).
+ * Scroll pin distance = duration × VIDEO_SCRUB_PPS (adapts to any length).
  */
 export const VIDEOS = {
   hero: {
@@ -46,8 +46,8 @@ export const VIDEOS = {
   },
 } as const;
 
-/** Shared scrub feel: ~280px of scroll per second of video (~1120px for 4s). */
-export const VIDEO_SCRUB_PPS = 280;
+/** ~1350px of scroll per second of video (within 1200–1500). Pin = duration × this. */
+export const VIDEO_SCRUB_PPS = 1350;
 
 export const PROJECTS = [
   {
