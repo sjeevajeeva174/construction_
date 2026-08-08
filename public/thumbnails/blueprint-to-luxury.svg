@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <rect width="1920" height="1080" fill="#07090d"/>
+  <g stroke="#4d7cff" stroke-width="1.2" opacity="0.55" fill="none">
+    <path d="M200 820 L520 280 L860 280 L1180 820 Z"/>
+    <path d="M860 280 L1400 280 L1720 820 L1180 820"/>
+    <line x1="520" y1="280" x2="520" y2="820"/>
+    <line x1="860" y1="280" x2="860" y2="820"/>
+    <line x1="200" y1="820" x2="1720" y2="820"/>
+  </g>
+  <g stroke="#c6a75e" stroke-width="1" opacity="0.35" fill="none">
+    <rect x="640" y="420" width="280" height="220"/>
+  </g>
+  <text x="96" y="980" fill="#c6a75e" font-family="Georgia, serif" font-size="42" letter-spacing="8">BLUEPRINT</text>
+</svg>

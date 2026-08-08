@@ -1,0 +1,263 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #070708;
+  --color-foreground: #f4f1ec;
+  --color-muted: #9a958c;
+  --color-gold: #c6a75e;
+  --color-gold-soft: #e0c989;
+  --color-gold-deep: #8c7033;
+  --color-surface: #101012;
+  --color-surface-elevated: #16161a;
+  --color-border: rgba(244, 241, 236, 0.12);
+  --color-glass: rgba(16, 16, 18, 0.55);
+
+  --font-display: "Cormorant Garamond", "Times New Roman", serif;
+  --font-body: "Neue Haas Grotesk", "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-body);
+    font-weight: 400;
+    line-height: 1.55;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--color-gold) 55%, transparent);
+    color: #0a0a0b;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  button,
+  input,
+  textarea,
+  select {
+    font: inherit;
+  }
+
+  img,
+  video {
+    max-width: 100%;
+    display: block;
+  }
+
+  :focus-visible {
+    outline: 1px solid var(--color-gold);
+    outline-offset: 3px;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  .font-mono {
+    font-family: var(--font-mono);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-gold {
+    color: var(--color-gold);
+  }
+
+  .bg-noise {
+    background-image: url("/images/noise.svg");
+    background-repeat: repeat;
+    background-size: 180px 180px;
+  }
+
+  .glass {
+    background: var(--color-glass);
+    border: 1px solid var(--color-border);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+  }
+
+  .hairline {
+    border: 1px solid var(--color-border);
+  }
+
+  .mask-reveal {
+    clip-path: inset(0 0 100% 0);
+  }
+
+  .section-pad {
+    padding-inline: clamp(1.25rem, 4vw, 4.5rem);
+  }
+
+  .display-xl {
+    font-family: var(--font-display);
+    font-size: clamp(3.5rem, 10vw, 9.5rem);
+    line-height: 0.9;
+    letter-spacing: -0.03em;
+    font-weight: 500;
+  }
+
+  .display-lg {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 6vw, 5.5rem);
+    line-height: 0.95;
+    letter-spacing: -0.025em;
+    font-weight: 500;
+  }
+
+  .display-md {
+    font-family: var(--font-display);
+    font-size: clamp(1.85rem, 3.5vw, 3.25rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    font-weight: 500;
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+  }
+
+  .container-max {
+    width: min(100%, 1440px);
+    margin-inline: auto;
+  }
+
+  .gallery-masonry {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.85rem;
+  }
+
+  @media (min-width: 768px) {
+    .gallery-masonry {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      grid-auto-rows: 140px;
+      gap: 1rem;
+    }
+
+    .gallery-item {
+      grid-column: span 4;
+      grid-row: span 2;
+      min-height: 100%;
+    }
+
+    .gallery-item.gallery-tall {
+      grid-row: span 3;
+    }
+
+    .gallery-item.gallery-wide {
+      grid-column: span 8;
+      grid-row: span 2;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .gallery-item {
+      aspect-ratio: 4 / 5;
+    }
+
+    .gallery-item.gallery-wide {
+      aspect-ratio: 16 / 10;
+      grid-column: span 2;
+    }
+  }
+
+  /* Scroll-scrub video — compositor hints only while pinned */
+  .scrub-section.is-scrubbing .scrub-media {
+    will-change: transform;
+  }
+
+  .scrub-section.is-scrubbing .scrub-video {
+    /* Promote video to its own layer while scrubbing; drop when idle */
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+
+  .scrub-video {
+    /* Avoid expensive filters / blending on the video element itself */
+    pointer-events: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body.cursor-luxury,
+body.cursor-luxury * {
+  cursor: none !important;
+}
+
+@media (pointer: coarse) {
+  body.cursor-luxury,
+  body.cursor-luxury * {
+    cursor: auto !important;
+  }
+}
+
+@keyframes intro-loader {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.intro-loader-bar {
+  animation: intro-loader 1.6s var(--ease-out-expo) forwards;
+}

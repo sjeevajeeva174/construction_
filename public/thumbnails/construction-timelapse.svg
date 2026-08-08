@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <rect width="1920" height="1080" fill="#0b0c0e"/>
+  <g opacity="0.4" fill="#c6a75e">
+    <rect x="300" y="700" width="80" height="180"/>
+    <rect x="420" y="560" width="80" height="320"/>
+    <rect x="540" y="420" width="80" height="460"/>
+    <rect x="660" y="300" width="80" height="580"/>
+    <rect x="780" y="380" width="80" height="500"/>
+    <rect x="900" y="240" width="80" height="640"/>
+    <rect x="1020" y="340" width="80" height="540"/>
+    <rect x="1140" y="480" width="80" height="400"/>
+    <rect x="1260" y="620" width="80" height="260"/>
+  </g>
+  <text x="96" y="980" fill="#c6a75e" font-family="Georgia, serif" font-size="42" letter-spacing="8">TIMELAPSE</text>
+</svg>

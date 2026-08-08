@@ -1,0 +1,9 @@
+{
+  "name": "AETHER",
+  "short_name": "AETHER",
+  "description": "Premium architecture and construction atelier.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#070708",
+  "theme_color": "#070708"
+}
